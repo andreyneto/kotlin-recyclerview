@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.programming_language_item.view.*
 class ProgrammingLanguageAdapter(
     private val items: List<ProgrammingLanguage>,
     private val context: Context,
-    private val listener: Listener
+    private val listener: (ProgrammingLanguage) -> Unit
 ) : Adapter<ProgrammingLanguageAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
          ViewHolder(
@@ -27,10 +27,9 @@ class ProgrammingLanguageAdapter(
         holder.bindView(items[position], listener)
     }
 
-
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bindView(item: ProgrammingLanguage,
-                     listener: Listener) = with(itemView){
+                     listener: (ProgrammingLanguage) -> Unit) = with(itemView){
             ivMain.setImageDrawable(ContextCompat.getDrawable(context, item.imageResourceId))
             tvTitle.text = item.title
             tvLaunchYear.text = item.year.toString()
@@ -39,5 +38,3 @@ class ProgrammingLanguageAdapter(
         }
     }
 }
-
-typealias Listener = (ProgrammingLanguage) -> Unit
