@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import br.com.andreyneto.kotlinrecyclerview.R
 import br.com.andreyneto.kotlinrecyclerview.model.ProgrammingLanguage
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.programming_language_item.view.*
 
 class ProgrammingLanguageAdapter(
@@ -30,7 +31,7 @@ class ProgrammingLanguageAdapter(
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bindView(item: ProgrammingLanguage,
                      listener: (ProgrammingLanguage) -> Unit) = with(itemView){
-            ivMain.setImageDrawable(ContextCompat.getDrawable(context, item.imageResourceId))
+            Glide.with(ivMain.context).load(item.imageResourceId).into(ivMain)
             tvTitle.text = item.title
             tvLaunchYear.text = item.year.toString()
             tvDescription.text = item.description
