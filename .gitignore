@@ -69,3 +69,4 @@ fastlane/readme.md
 gen-external-apklibs
 
 # End of https://www.gitignore.io/api/androidw
+.idea/codeStyles/Project.xml
