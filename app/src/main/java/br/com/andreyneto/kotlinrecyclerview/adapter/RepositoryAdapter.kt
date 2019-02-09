@@ -4,24 +4,22 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import br.com.andreyneto.kotlinrecyclerview.R
-import br.com.andreyneto.kotlinrecyclerview.model.ProgrammingLanguage
 import br.com.andreyneto.kotlinrecyclerview.model.Repository
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.programming_language_item.view.*
+import kotlinx.android.synthetic.main.repository_item.view.*
 
 class RepositoryAdapter(
     private val items: List<Repository>,
     private val context: Context,
-    private val listener: (ProgrammingLanguage) -> Unit
+    private val listener: (Repository) -> Unit
 ) : Adapter<RepositoryAdapter.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
          ViewHolder(
             LayoutInflater.from(context)
-                .inflate(R.layout.programming_language_item, parent, false))
+                .inflate(R.layout.repository_item, parent, false))
 
     override fun getItemCount() = items.size
 
@@ -31,10 +29,10 @@ class RepositoryAdapter(
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bindView(item: Repository,
-                     listener: (ProgrammingLanguage) -> Unit) = with(itemView){
-            Glide.with(ivMain.context).load(item).into(ivMain)
-            tvTitle.text = item.title
-            tvLaunchYear.text = item.year.toString()
+                     listener: (Repository) -> Unit) = with(itemView){
+            Glide.with(ivMain.context).load(item.owner?.avatar_url).into(ivMain)
+            tvTitle.text = item.name
+            tvOwner.text = item.owner?.login
             tvDescription.text = item.description
             setOnClickListener { listener(item) }
         }
