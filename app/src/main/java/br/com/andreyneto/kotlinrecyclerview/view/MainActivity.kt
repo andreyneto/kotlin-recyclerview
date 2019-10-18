@@ -56,4 +56,9 @@ class MainActivity : AppCompatActivity() {
             "Java", 2010, "Kotlin description")
         return listOf(kotlin, java)
     }
+
+    override fun onBackPressed() {
+        if(recyclerView.adapter is RepositoryAdapter) loadDefaultRecylerView()
+        else super.onBackPressed()
+    }
 }
